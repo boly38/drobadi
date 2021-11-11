@@ -1,0 +1,11 @@
+#Npm
+node_modules/
+
+.nyc_output/
+coverage/
+
+#IntelliJ
+*.iml
+
+#Files with secrets
+*.dontpush.*

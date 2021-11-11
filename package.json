@@ -1,0 +1,46 @@
+{
+  "name": "dropbadi",
+  "version": "0.0.0",
+  "description": "dropbadi: a node tool to backup a given directory onto dropbox",
+  "main": "./lib/drobadi.js",
+  "author": "Boly38 <boly38@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boly38/dropbadi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/boly38/dropbadi/issues"
+  },
+  "keywords": [
+    "node",
+    "backup",
+    "dropbox",
+    "directory"
+  ],
+  "copyright": {
+    "title": "dropbadi",
+    "years": [
+      2021
+    ],
+    "author": "Brice Vandeputte"
+  },
+  "dependencies": {
+    "archiver": "^5.3.0",
+    "dateformat": "^4.5.1",
+    "dropbox-v2-api": "^2.4.38"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-string": "^1.5.0",
+    "mocha": "^9.1.2",
+    "nyc": "^15.1.0"
+  },
+  "jshintConfig": {
+    "esversion": 6
+  },
+  "scripts": {
+    "test": "echo test&& mocha --exit --unhandled-rejections=strict tests/*.test.js --timeout 50000",
+    "ci-test": "echo ci-test&& nyc --reporter text --reporter cobertura --reporter html --reporter=lcov --lines 66 mocha --exit --unhandled-rejections=strict tests/*.test.js --timeout 50000"
+  }
+}
