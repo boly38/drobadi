@@ -2,9 +2,12 @@
   "name": "drobadi",
   "version": "0.0.3",
   "description": "drobadi: a node tool to backup a given directory onto dropbox",
-  "main": "./lib/drobadi.js",
   "author": "Boly38 <boly38@gmail.com>",
   "license": "MIT",
+  "main": "./drobadi.js",
+  "bin": {
+    "drobadi": "./bin/drobadi-bin.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/boly38/drobadi.git"

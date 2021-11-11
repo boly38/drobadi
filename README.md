@@ -5,11 +5,11 @@ Dropbox backup directory - NodeJS tool to zip a directory and create backup onto
 [![NPM](https://nodei.co/npm/drobadi.png?compact=true)](https://npmjs.org/package/drobadi)
 
 Features :
-- `node drobadi backup <localDirectory> [<targetName.zip>]`
+- `drobadi backup <localDirectory> [<myBackup.zip>]`
 
 _create a remote zip backup from local directory_
 
-- `node drobadi list` 
+- `drobadi list` 
 
 _list remote backups_
 
@@ -27,9 +27,16 @@ the `Generated access token` section.
 
 Copy the generated value from step 4). This is the token you must use for the next step.
 
-### Set your preferences
-A dropbox access token in required.
+### Setup
+**install drobadi**
 
+```
+npm install drobadi --global
+```
+
+**set your preferences**
+
+A dropbox access token in required.
 
 ```
 # linux
@@ -38,13 +45,23 @@ export DBD_DROPBOX_TOKEN=myDropboxGeneratedAccessTokenValueHere
 set DBD_DROPBOX_TOKEN=myDropboxGeneratedAccessTokenValueHere
 ```
 
-### Basic feature
-```
-# list backups
-node drobadi list
 
-# create a dropbox backup 'biolo.zip' from local directory '../tmp/backup/myDir'
-node drobadi backup ../tmp/backup/myDir biolo.zip
+
+### Basic feature
+
+ - show help
+```
+drobadi
+```
+
+ - list backups
+```
+drobadi list
+```
+
+ - create a dropbox backup 'biolo.zip' from local directory '../tmp/backup/myDir'
+```
+drobadi backup ../tmp/backup/myDir biolo.zip
 ```
 
 ## How to contribute
