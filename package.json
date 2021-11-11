@@ -1,16 +1,16 @@
 {
-  "name": "dropbadi",
-  "version": "0.0.2",
-  "description": "dropbadi: a node tool to backup a given directory onto dropbox",
+  "name": "drobadi",
+  "version": "0.0.1",
+  "description": "drobadi: a node tool to backup a given directory onto dropbox",
   "main": "./lib/drobadi.js",
   "author": "Boly38 <boly38@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/boly38/dropbadi.git"
+    "url": "https://github.com/boly38/drobadi.git"
   },
   "bugs": {
-    "url": "https://github.com/boly38/dropbadi/issues"
+    "url": "https://github.com/boly38/drobadi/issues"
   },
   "keywords": [
     "node",
@@ -19,7 +19,7 @@
     "directory"
   ],
   "copyright": {
-    "title": "dropbadi",
+    "title": "drobadi",
     "years": [
       2021
     ],
