@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "./drobadi.js",
   "bin": {
-    "drobadi": "./bin/drobadi-bin.js"
+    "drobadi": "./bin/drobadi.js"
   },
   "repository": {
     "type": "git",
