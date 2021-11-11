@@ -1,6 +1,6 @@
 {
   "name": "dropbadi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "dropbadi: a node tool to backup a given directory onto dropbox",
   "main": "./lib/drobadi.js",
   "author": "Boly38 <boly38@gmail.com>",
