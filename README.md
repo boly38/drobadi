@@ -1,6 +1,6 @@
 # drobadi
 
-Use NodeJS to zip a directory and create backup onto dropbox
+Dropbox backup directory - NodeJS tool to zip a directory and create backup onto Dropbox.
 
 [![NPM](https://nodei.co/npm/drobadi.png?compact=true)](https://npmjs.org/package/drobadi)
 
