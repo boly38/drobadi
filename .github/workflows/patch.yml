@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [15.x]
+        node-version: [16.x]
 
     steps:
       - name: Git checkout
@@ -22,14 +22,11 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-          cache-dependency-path: |
-            package-lock.json
 
       - name: Patch
         run: |
-          git config --global user.email  'github-actions[bot]@users.noreply.github.com'
-          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.name  'github-actions[bot]'
           git fetch --all
           git checkout main
           npm version patch
