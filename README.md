@@ -2,7 +2,7 @@
 
 Use NodeJS to zip a directory and create backup onto dropbox
 
-[![NPM](https://nodei.co/npm/dropbadi.png?compact=true)](https://npmjs.org/package/dropbadi)
+[![NPM](https://nodei.co/npm/drobadi.png?compact=true)](https://npmjs.org/package/drobadi)
 
 Features :
 - `node drobadi backup <localDirectory> [<targetName.zip>]`
@@ -53,7 +53,7 @@ You're not a dev ? just submit an issue (bug, improvements, questions). Or else:
 * Install deps
 * Then mocha tests
 ```
-git clone https://github.com/boly38/dropbadi.git
+git clone https://github.com/boly38/drobadi.git
 npm install
 npm run test
 ```
@@ -63,7 +63,7 @@ npm run test
 
 | badge  | name   | description  |
 |--------|-------|:--------|
-| ![CI/CD](https://github.com/boly38/dropbadi/workflows/dropbadi-ci/badge.svg) |Github actions|Continuous tests.
-| [![Audit](https://github.com/boly38/dropbadi/actions/workflows/audit.yml/badge.svg)](https://github.com/boly38/ndropbadi/actions/workflows/audit.yml) |Github actions|Continuous vulnerability audit.
+| ![CI/CD](https://github.com/boly38/drobadi/workflows/drobadi-ci/badge.svg) |Github actions|Continuous tests.
+| [![Audit](https://github.com/boly38/drobadi/actions/workflows/audit.yml/badge.svg)](https://github.com/boly38/ndrobadi/actions/workflows/audit.yml) |Github actions|Continuous vulnerability audit.
 | [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)|[Houndci](https://houndci.com/)|JavaScript  automated review (configured by `.hound.yml`)|
 
