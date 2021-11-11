@@ -48,4 +48,9 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         dedupe_issues: true
 
-#TODO    - name: Publish NpmJS package
+    - name: Publish NpmJS package
+      if: github.ref == 'refs/heads/npmjs'
+      run: |
+        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_DEPLOY_TOKEN }}" > .npmrc
+        npm whoami # rely on .npmrc
+        npm publish
