@@ -59,9 +59,19 @@ drobadi
 drobadi list
 ```
 
- - create a dropbox backup 'biolo.zip' from local directory '../tmp/backup/myDir'
+- create a dropbox backup `/backup/biolo.zip` from local directory `../tmp/backup/myDir`
 ```
 drobadi backup ../tmp/backup/myDir biolo.zip
+```
+
+- retrieve a dropbox backup `/biolo.zip` from dropbox file `/backup/biolo.zip`
+```
+drobadi download biolo.zip
+```
+
+- retrieve a dropbox backup `/tmp/ddd.zip` from dropbox file `/backup/biolo.zip`
+```
+drobadi download biolo.zip /tmp/ddd.zip
 ```
 
 ## How to contribute
