@@ -13,6 +13,9 @@ _create a remote zip backup from local directory_
 
 _list remote backups_
 
+- `drobadi download <myBackup.zip> [<localFile.zip>]`
+
+_download a remote zip backup into local file_
 
 ## Command line usage
 
