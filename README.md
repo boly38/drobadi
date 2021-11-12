@@ -48,6 +48,15 @@ Example: zip local directory `../tmp/backup/myDir` then upload as dropbox backup
 drobadi backup ../tmp/backup/myDir biolo.zip
 ```
 
+This action will success if the target dropbox already exists with the same zip file.
+
+This action will fail if a different target dropbox already exists (use `forceBackup` to override it).
+
+`backup` is the default dropbox backup target directory and may be changed using options.
+
+### Create or override a backup
+- `drobadi forceBackup <localDirectory> [<myBackup.zip>]`
+
 ### List backups
 
 - `drobadi list`
@@ -73,8 +82,9 @@ drobadi download biolo.zip /tmp/ddd.zip
 
 ## Options
 Drobadi options are
-- `dropboxToken` (from `config.dropboxToken` or `DBD_DROPBOX_TOKEN` env) : dropbox access token value,
-- `path` (from `config.path` or `DBD_PATH` env. Default: `backup`) : dropbox backup directory.
+- `dropboxToken` (or `DBD_DROPBOX_TOKEN` env. Default: `null`. **Mandatory**) : dropbox access token value,
+- `path` (or `DBD_PATH` env. Default: `backup`) : dropbox backup directory.
+- `force` (or `DBD_FORCE` env. Default: `false`) : override target backup.
 
 Note that `drobadi setup` creates a `~/.drobadi` config file.
 
