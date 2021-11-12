@@ -9,3 +9,6 @@ coverage/
 
 #Files with secrets
 *.dontpush.*
+
+#drobadi working file
+__drobadi_tmp_archive.zip
