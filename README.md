@@ -1,34 +1,16 @@
 # drobadi
 
-Dropbox backup directory - NodeJS tool to zip a directory and create backup onto Dropbox.
+Dropbox backup directory
+
+A NodeJS tool to 
+- zip a directory and create backup onto Dropbox, 
+- list backups, 
+- or download a backup.
 
 [![NPM](https://nodei.co/npm/drobadi.png?compact=true)](https://npmjs.org/package/drobadi)
 
-Features :
-- `drobadi backup <localDirectory> [<myBackup.zip>]`
-
-_create a remote zip backup from local directory_
-
-- `drobadi list` 
-
-_list remote backups_
-
-- `drobadi download <myBackup.zip> [<localFile.zip>]`
-
-_download a remote zip backup into local file_
 
 ## Command line usage
-
-### Create a Dropbox application and access token
-First time you want to use this script, please follow the instructions:
-
-1) Open the following URL in your Browser, and log in using your account: https://www.dropbox.com/developers/apps
-2) Click on `Create App`, then select `Scoped access`, a type of access (ex. folder) and name your app to create it.
-3) In the configuration, choose the app `Permissions` : you must check `files.content.write` and `files.content.read` and submit.
-4) In the configuration, choose the app `Settings` : click on the `Generate` button located under 
-the `Generated access token` section.
-
-Copy the generated value from step 4). This is the token you must use for the next step.
 
 ### Setup
 **install drobadi**
@@ -39,43 +21,64 @@ npm install drobadi --global
 
 **set your preferences**
 
-A dropbox access token in required.
+A dropbox access token is required.
 
 ```
-# linux
-export DBD_DROPBOX_TOKEN=myDropboxGeneratedAccessTokenValueHere
-# windows
-set DBD_DROPBOX_TOKEN=myDropboxGeneratedAccessTokenValueHere
+drobadi setup
+```
+_(first time only) create a drobadi config file `~/.drobadi`_
+
+To remove this setup
+```
+drobadi unlink
 ```
 
+### Show help
+- `drobadi`
 
+_show actions_
 
-### Basic feature
+### Create a backup
+- `drobadi backup <localDirectory> [<myBackup.zip>]`
 
- - show help
-```
-drobadi
-```
+_create a remote zip backup from local directory_
 
- - list backups
-```
-drobadi list
-```
-
-- create a dropbox backup `/backup/biolo.zip` from local directory `../tmp/backup/myDir`
+Example: zip local directory `../tmp/backup/myDir` then upload as dropbox backup `/backup/biolo.zip` 
 ```
 drobadi backup ../tmp/backup/myDir biolo.zip
 ```
 
-- retrieve a dropbox backup `/biolo.zip` from dropbox file `/backup/biolo.zip`
+### List backups
+
+- `drobadi list`
+
+_list remote backups_
+
+
+### Download a backup
+
+- `drobadi download <myBackup.zip> [<localFile.zip>]`
+
+_download a remote backup into local file_
+
+Example: download dropbox file `/backup/biolo.zip` as local file `./biolo.zip`
 ```
 drobadi download biolo.zip
 ```
 
-- retrieve a dropbox backup `/tmp/ddd.zip` from dropbox file `/backup/biolo.zip`
+Example: download dropbox file `/backup/biolo.zip` as local file `/tmp/ddd.zip`
 ```
 drobadi download biolo.zip /tmp/ddd.zip
 ```
+
+## Options
+Drobadi options are
+- `dropboxToken` (from `config.dropboxToken` or `DBD_DROPBOX_TOKEN` env) : dropbox access token value,
+- `path` (from `config.path` or `DBD_PATH` env. Default: `backup`) : dropbox backup directory.
+
+Note that `drobadi setup` creates a `~/.drobadi` config file.
+
+Options precedence: options object, or env value or config file or default value.
 
 ## How to contribute
 You're not a dev ? just submit an issue (bug, improvements, questions). Or else:
