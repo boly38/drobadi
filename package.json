@@ -1,6 +1,6 @@
 {
   "name": "drobadi",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "drobadi: a node tool to backup a given directory onto dropbox",
   "author": "Boly38 <boly38@gmail.com>",
   "license": "MIT",
@@ -28,7 +28,10 @@
   ],
   "copyright": {
     "title": "drobadi",
-    "years": [2021, 2022],
+    "years": [
+      2021,
+      2022
+    ],
     "author": "Brice Vandeputte"
   },
   "dependencies": {
