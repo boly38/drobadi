@@ -38,7 +38,7 @@
     "archiver": "^5.3.0",
     "dateformat": "^4.5.1",
     "dropbox-v2-api": "^2.4.38",
-    "prompt": "^1.2.0",
+    "inquirer": "^8.2.2",
     "yesno": "^0.3.1"
   },
   "devDependencies": {
