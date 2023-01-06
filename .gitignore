@@ -5,6 +5,7 @@ node_modules/
 coverage/
 
 #IntelliJ
+.idea/
 *.iml
 
 #Files with secrets
