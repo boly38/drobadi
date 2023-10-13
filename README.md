@@ -83,7 +83,7 @@ Example: download dropbox file `/backup/biolo.zip` as local file `/tmp/ddd.zip`
 drobadi download biolo.zip /tmp/ddd.zip
 ```
 
-## Options
+## DOptions
 Drobadi options are
 - `dropboxToken` (or `DBD_DROPBOX_TOKEN` env. Default: `null`. **Mandatory**) : dropbox access token value,
 - `path` (or `DBD_PATH` env. Default: `backup`) : dropbox backup directory.
@@ -91,7 +91,52 @@ Drobadi options are
 
 Note that `drobadi setup` creates a `~/.drobadi` config file.
 
-Options precedence: options object, or env value or config file or default value.
+DOptions precedence: options object, or env value or config file or default value.
+
+
+## Library use
+
+### Install dependency
+
+You have to import as dependency
+```
+npm install drobadi
+```
+
+### Define the requirements, example:
+``` 
+import {Drobadi, DOptions} from "drobadi";
+
+const dOptions = new DOptions({
+    "dropboxToken": 'My dropbox token is a secret',
+    "path": "from-drobadi",
+    "force": true
+});
+let drobadi = new Drobadi();
+```
+
+### create a remote backup from local directory
+```
+let promiseResult =  drobadi.backup(dOptions, "./myData/", "dataBack.zip")
+```
+
+### list remote backups
+```
+let promiseResult = drobadi.list(dOptions);
+```
+
+### Restore remote backup in current directory
+```
+let promiseResult = drobadi.download(dOptions, "dataBack.zip")
+```
+
+### Restore remote backup in a given local destination
+```
+var promiseResult = drobadi.download(dOptions, "dataBack.zip", "/home/user/incomming/restored.zip")
+```
+
+NB: you could also have a look at tests : [drobadi.test.js](tests/drobadi.test.js)
+
 
 ## How to contribute
 You're not a dev ? just submit an issue (bug, improvements, questions). Or else:
@@ -107,9 +152,9 @@ npm run test
 
 ### Services or activated bots
 
-| badge  | name   | description  |
-|--------|-------|:--------|
-| ![CI/CD](https://github.com/boly38/drobadi/workflows/drobadi-ci/badge.svg) |Github actions|Continuous tests.
-| [![Audit](https://github.com/boly38/drobadi/actions/workflows/audit.yml/badge.svg)](https://github.com/boly38/ndrobadi/actions/workflows/audit.yml) |Github actions|Continuous vulnerability audit.
-| [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)|[Houndci](https://houndci.com/)|JavaScript  automated review (configured by `.hound.yml`)|
+| badge  | name                            | description                                               |
+|--------|---------------------------------|:----------------------------------------------------------|
+| ![CI/CD](https://github.com/boly38/drobadi/workflows/drobadi-ci/badge.svg) | Github actions                  | Continuous tests.                                         
+| [![Audit](https://github.com/boly38/drobadi/actions/workflows/audit.yml/badge.svg)](https://github.com/boly38/ndrobadi/actions/workflows/audit.yml) | Github actions                  | Continuous vulnerability audit.                           
+| [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)| [Houndci](https://houndci.com/) | JavaScript  automated review (configured by `.hound.yml`) |
 

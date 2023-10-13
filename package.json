@@ -4,12 +4,14 @@
   "description": "drobadi: a node tool to backup a given directory onto dropbox",
   "author": "Boly38 <boly38@gmail.com>",
   "license": "MIT",
-  "main": "./drobadi.js",
+  "type": "module",
+  "main": "./lib/drobadi.js",
   "scripts": {
     "audit": "npm audit --omit=dev",
     "preinstall": "npx force-resolutions",
-    "test": "echo test&& mocha --exit --unhandled-rejections=strict tests/*.test.js --timeout 50000",
-    "ci-test": "echo ci-test&& nyc --reporter text --reporter cobertura --reporter html --reporter=lcov --lines 66 mocha --exit --unhandled-rejections=strict tests/*.test.js --timeout 50000"
+    "test-requirement": "echo You must do: source ./env/initEnv.test.sh",
+    "test": "echo test&& mocha --bail --exit --unhandled-rejections=strict tests/*.test.js --timeout 50000",
+    "ci-test": "echo ci-test&& c8 --reporter text --reporter=lcov --lines 66 mocha --bail --exit --unhandled-rejections=strict tests/*.test.js --timeout 180000"
   },
   "bin": {
     "drobadi": "./bin/drobadi.js"
@@ -36,31 +38,28 @@
     ],
     "author": "Brice Vandeputte"
   },
+  "dependencies-notes": {
+    "archiver": "used to make zip file",
+    "dateformat": "used to heuu.. format date ^^",
+    "dropbox-v2-api": "used as dropbox client, will be replaced by official sdk",
+    "inquirer and yesno": "used to prompt options"
+  },
   "dependencies": {
     "archiver": "^5.3.1",
     "dateformat": "^4.5.1",
     "dropbox-v2-api": "^2.5.10-next.3",
     "inquirer": "^8.2.2",
-    "minimatch": "^3.0.5",
-    "qs": "^6.5.3",
     "yesno": "^0.3.1"
   },
   "devDependencies": {
+    "c8": "^8.0.1",
     "chai": "^4.3.10",
+    "chai-files": "^1.4.0",
     "chai-string": "^1.5.0",
-    "json5": "^2.2.2",
     "mocha": "^10.2.0",
-    "nanoid": "^3.2.0",
-    "npm-force-resolutions": "^0.0.10",
-    "nyc": "^15.1.0"
+    "npm-force-resolutions": "^0.0.10"
   },
-  "resolutions": {
-    "json5": "^2.2.2",
-    "minimatch": "^3.0.5",
-    "minimist": "^1.2.6",
-    "nanoid": "^3.2.0",
-    "qs": "^6.5.3"
-  },
+  "resolutions": {},
   "jshintConfig": {
     "esversion": 6
   }
