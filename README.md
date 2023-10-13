@@ -33,6 +33,8 @@ To remove this setup
 drobadi unlink
 ```
 
+NB: you could create other custom drobadi config files, and choose custom drobadi config file by using `DBD_CONFIG_FILE` env.
+
 ### Show help
 - `drobadi`
 
@@ -60,6 +62,7 @@ This action will fail if a different target dropbox already exists (use `forceBa
 ### List backups
 
 - `drobadi list`
+- `DBD_CONFIG_FILE=./tmp/myDrobadiConfig drobadi list`
 
 _list remote backups_
 
