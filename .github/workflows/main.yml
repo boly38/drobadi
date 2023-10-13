@@ -49,7 +49,7 @@ jobs:
     - name: Npm audit
       uses: oke-py/npm-audit-action@v2
       with:
-        audit_level: moderate
+        audit_level: high
         github_token: ${{ secrets.GITHUB_TOKEN }}
         dedupe_issues: true
         production_flag: true
