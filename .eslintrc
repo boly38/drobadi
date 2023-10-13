@@ -1,5 +1,19 @@
-{ // https://eslint.org/docs/4.0.0/user-guide/configuring
+{
+    "env": {
+        "es6": true,
+        "node": true,
+        "mocha": true
+    },
+    "plugins": [
+        "react"
+    ],
+    "parser": "babel-eslint",
     "parserOptions": {
-        "ecmaVersion": 2017
+        "sourceType": "module",
+        "ecmaVersion": 2017,
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true
+        }
     }
 }
