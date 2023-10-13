@@ -6,6 +6,7 @@
   "license": "MIT",
   "main": "./drobadi.js",
   "scripts": {
+    "audit": "npm audit --omit=dev",
     "preinstall": "npx force-resolutions",
     "test": "echo test&& mocha --exit --unhandled-rejections=strict tests/*.test.js --timeout 50000",
     "ci-test": "echo ci-test&& nyc --reporter text --reporter cobertura --reporter html --reporter=lcov --lines 66 mocha --exit --unhandled-rejections=strict tests/*.test.js --timeout 50000"
@@ -45,7 +46,7 @@
     "yesno": "^0.3.1"
   },
   "devDependencies": {
-    "chai": "^4.3.4",
+    "chai": "^4.3.10",
     "chai-string": "^1.5.0",
     "json5": "^2.2.2",
     "mocha": "^10.2.0",
