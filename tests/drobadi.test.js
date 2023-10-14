@@ -1,7 +1,7 @@
 import fs from "fs";
-import {isSet, logInfo, logWarn, logSuccess} from '../lib/utils.js';
-import {file, expect} from './testLib.js';
-import {_expectNoError, rmDirSync} from './testUtils.js';
+import { isSet, logInfo, logWarn, logSuccess, mkdirSync } from '../lib/utils.js';
+import { file, expect } from './testLib.js';
+import { _expectNoError, rmDirSync } from './testUtils.js';
 import {Drobadi, DOptions} from "../lib/drobadi.js";
 
 const testDbToken = process.env.DROBADI_TEST_DROPBOX_TOKEN || null;
@@ -43,13 +43,13 @@ describe("Drobadi", () => {
 
     it("should backup a local directory into a dropbox zip file", (done) => {
         const givenSampleFiles = directory => {
-            fs.mkdirSync(directory);
+            mkdirSync(directory);
             const subDirectory = directory + "/inside";
-            fs.mkdirSync(subDirectory)
+            mkdirSync(subDirectory)
             fs.writeFileSync(directory + "/hello", "HELLO WORLD !");
             fs.writeFileSync(subDirectory + "/bonjour", "BONJOUR MONDE !");
         }
-        fs.mkdirSync("tmp");
+        mkdirSync("tmp");
         givenSampleFiles(testBackupDirectory);
 
         drobadi.backup(testDOptions, testBackupDirectory, testDropboxZipDestinationFilename)
@@ -58,19 +58,9 @@ describe("Drobadi", () => {
                 const uploadResult = backupResult.uploadResult;
                 VERBOSE && logSuccess(uploadResult.message);
                 backupResult.target.should.be.eql(testBackupDirectory);
-                expect(uploadResult.client_modified).to.not.be.empty;
-                expect(uploadResult.content_hash).to.not.be.empty;
                 expect(uploadResult.dropboxFile).to.be.eql(expectedDropboxTargetFullName);
                 expect(uploadResult.dropboxFileSize).to.be.within(300, 500);
-                expect(uploadResult.id).to.not.be.empty;
-                expect(uploadResult.is_downloadable).to.be.true;
-                expect(uploadResult.name).to.be.eql(testDropboxZipDestinationFilename);
-                expect(uploadResult.path_display).to.be.eql(expectedDropboxTargetFullName);
-                expect(uploadResult.path_lower).to.be.eql(expectedDropboxTargetFullName);
-                expect(uploadResult.rev).to.not.be.empty;
-                expect(uploadResult.server_modified).to.not.be.empty;
-                expect(uploadResult.size).to.be.within(300, 500);
-                lastArchiveSize = uploadResult.size;
+                lastArchiveSize = uploadResult.dropboxFileSize;
                 done();
             });
 
@@ -105,7 +95,7 @@ describe("Drobadi", () => {
 
     it("should restore backup in specified file", (done) => {
         VERBOSE && logInfo(`create empty ${testRestoreDirectory}`)
-        fs.mkdirSync(testRestoreDirectory);
+        mkdirSync(testRestoreDirectory);
         const destination = `${testRestoreDirectory}/restored.zip`;
 
         drobadi.download(testDOptions, testDropboxZipDestinationFilename, destination)

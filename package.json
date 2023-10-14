@@ -41,13 +41,13 @@
   "dependencies-notes": {
     "archiver": "used to make zip file",
     "dateformat": "used to heuu.. format date ^^",
-    "dropbox-v2-api": "used as dropbox client, will be replaced by official sdk",
+    "dropbox": "used as dropbox client - official sdk",
     "inquirer and yesno": "used to prompt options"
   },
   "dependencies": {
     "archiver": "^5.3.1",
     "dateformat": "^4.5.1",
-    "dropbox-v2-api": "^2.5.10-next.3",
+    "dropbox": "^10.34.0",
     "inquirer": "^8.2.2",
     "yesno": "^0.3.1"
   },
