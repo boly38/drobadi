@@ -12,7 +12,10 @@ If you want to push some code :
 
 ```bash
 # provide PAT with permissions to create release on current repository
-export GREN_GITHUB_TOKEN=xxx
+export GREN_GITHUB_TOKEN=your_token_here
+# one time setup
+npm install github-release-notes -g
+
 # make a release v1.0.1 with all history
 gren release --data-source=prs -t "v1.0.1" --milestone-match="v1.0.1"
 # overrides release v1.0.1 with history from v1.0.0
