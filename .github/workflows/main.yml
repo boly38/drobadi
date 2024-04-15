@@ -47,7 +47,9 @@ jobs:
       env:
         DROBADI_TEST_VERBOSE: true
         DROBADI_ARCHIVER_VERBOSE: true
-        DROBADI_TEST_DROPBOX_TOKEN: ${{ secrets.DROBADI_TEST_DROPBOX_TOKEN }}
+        DROBADI_TEST_APP_KEY : ${{ secrets.DROBADI_TEST_APP_KEY  }}
+        DROBADI_TEST_APP_SECRET : ${{ secrets.DROBADI_TEST_APP_SECRET  }}
+        DROBADI_TEST_REFRESH_TOKEN : ${{ secrets.DROBADI_TEST_REFRESH_TOKEN  }}
       run: npm run ci-test
 
     - name: Report coverage

@@ -47,7 +47,9 @@
   "dependencies": {
     "archiver": "^5.3.1",
     "dateformat": "^4.5.1",
+    "dotenv": "^16.4.5",
     "dropbox": "^10.34.0",
+    "dropbox-refresh-token": "^0.0.2",
     "inquirer": "^8.2.2",
     "yesno": "^0.3.1"
   },
