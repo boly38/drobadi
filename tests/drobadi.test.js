@@ -69,7 +69,7 @@ describe("Drobadi", () => {
             .then(backupResult => {
                 const uploadResult = backupResult.uploadResult;
                 VERBOSE && logSuccess(uploadResult.message);
-                backupResult.target.should.be.eql(testBackupDirectory);
+                expect(backupResult.target).to.be.eql(testBackupDirectory);
                 expect(uploadResult.dropboxFile).to.be.eql(`/${testDropboxTargetDirectory}/${testDropboxZipDestinationFilename}`);
                 expect(uploadResult.dropboxFileSize).to.be.within(300, 500);
                 lastArchiveSize = uploadResult.dropboxFileSize;
