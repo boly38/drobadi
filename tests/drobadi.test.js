@@ -21,7 +21,7 @@ let initialOptions = {
     "dropboxAppSecret": DROBADI_TEST_APP_SECRET,
     "dropboxRefreshToken": DROBADI_TEST_REFRESH_TOKEN,
     "path": testDropboxTargetDirectory,
-    "force": true
+    "overrideTargetBackup": true // because test didnt remove backup
 };
 if (isSet(DROBADI_TEST_DROPBOX_TOKEN)) {
     initialOptions["dropboxToken"] = DROBADI_TEST_DROPBOX_TOKEN; // legacy and deprecated

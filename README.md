@@ -93,7 +93,7 @@ Drobadi options are
 - `dropboxAppSecret` (or `DBD_DROPBOX_APP_SECRET` env. Default: `null`. **Required**) : dropbox application secret.
 - `dropboxRefreshToken` (or `DBD_DROPBOX_REFRESH_TOKEN`. Default: `null`.  env. **Required**) : dropbox application [refresh-token](https://github.com/boly38/dropbox-refresh-token).
 - `path` (or `DBD_PATH` env. Default: `backup`) : dropbox target directory that receive backup files.
-- `force` (or `DBD_FORCE` env. Default: `false`) : override target backup file.
+- `overrideTargetBackup` (or `DBD_OVERRIDE_TARGET_BACKUP` env. Default: `false`) : override target backup file.
 
 Deprecated option:
 - `dropboxToken` (or `DBD_DROPBOX_TOKEN` env. Default: `null`. **DEPRECATED**) : dropbox access-token value,
@@ -120,7 +120,7 @@ import {Drobadi, DOptions} from "drobadi";
 const dOptions = new DOptions({
     "dropboxToken": 'My dropbox token is a secret',
     "path": "from-drobadi",
-    "force": true
+    "overrideTargetBackup": true
 });
 let drobadi = new Drobadi();
 ```
