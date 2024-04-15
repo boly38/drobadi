@@ -1,13 +1,27 @@
 [ < Back](../README.md)
 
-# HowTo Contribute
+# Github users HowTos
 
-Please create an [issue](https://github.com/boly38/drobadi/issues) describing your goal / qustion / bug description..
+## HowTo contribute
+
+Please create an [issue](https://github.com/boly38/drobadi/issues) describing your goal / idea / question / bug description...
 
 If you want to push some code :
-- fork and prepare a feature-git-branch, then create a [pull request](https://github.com/boly38/drobadi/pulls) that link your issue.
+- following next `HowTo push some code` guide,
+- create a [pull request](https://github.com/boly38/drobadi/pulls) that link your issue using `#<issue_id>`.
 
-# Maintainer HowTos
+## HowTo push some code
+
+Follow this steps:
+- fork the repository using Github portal.
+- Clone your fork locally
+- Prepare a feature branch `checkout -b my_idea`
+- add some code
+- double check green Unit Tests : `DROBADI_TEST_VERBOSE=true npm test`
+
+
+# Maintainers HowTos
+
 ## HowTo release using Gren
 
 ```bash

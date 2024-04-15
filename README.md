@@ -16,12 +16,16 @@ A NodeJS tool to
 **install drobadi**
 
 ```
-npm install drobadi --global
+npm install drobadi@latest --global
 ```
 
 **set your preferences**
 
-A dropbox access token is required.
+A dropbox application (`dropboxAppKey`,`dropboxAppSecret`), and long-lived refresh-token (`dropboxRefreshToken`) are required.
+
+NB: in order to understand how-to get a `refresh-token, cf [dropbox-refresh-token](https://github.com/boly38/dropbox-refresh-token)
+
+The old-long-lived access-token (`dropboxToken`) are always supported but this method is deprecated and will be removed in futur release.
 
 ```
 drobadi setup
@@ -85,11 +89,17 @@ drobadi download biolo.zip /tmp/ddd.zip
 
 ## DOptions
 Drobadi options are
-- `dropboxToken` (or `DBD_DROPBOX_TOKEN` env. Default: `null`. **Mandatory**) : dropbox access token value,
-- `path` (or `DBD_PATH` env. Default: `backup`) : dropbox backup directory.
-- `force` (or `DBD_FORCE` env. Default: `false`) : override target backup.
+- `dropboxAppKey` (or `DBD_DROPBOX_APP_KEY` env. Default: `null`. **Required**) : [dropbox application](https://www.dropbox.com/developers/apps/) key.
+- `dropboxAppSecret` (or `DBD_DROPBOX_APP_SECRET` env. Default: `null`. **Required**) : dropbox application secret.
+- `dropboxRefreshToken` (or `DBD_DROPBOX_REFRESH_TOKEN`. Default: `null`.  env. **Required**) : dropbox application [refresh-token](https://github.com/boly38/dropbox-refresh-token).
+- `path` (or `DBD_PATH` env. Default: `backup`) : dropbox target directory that receive backup files.
+- `force` (or `DBD_FORCE` env. Default: `false`) : override target backup file.
 
-Note that `drobadi setup` creates a `~/.drobadi` config file.
+Deprecated option:
+- `dropboxToken` (or `DBD_DROPBOX_TOKEN` env. Default: `null`. **DEPRECATED**) : dropbox access-token value,
+- `dropboxTokenDisableWarning` (or `DBD_DROPBOX_TOKEN_DISABLE_WARNING` env. Default: `false`.*) : change-it to disable warning log.
+
+Note that `drobadi setup` help you to create a `~/.drobadi` config file.
 
 DOptions precedence: options object, or env value or config file or default value.
 
