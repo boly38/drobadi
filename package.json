@@ -1,6 +1,6 @@
 {
   "name": "drobadi",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "drobadi: a node tool to backup a given directory onto dropbox",
   "author": "Boly38 <boly38@gmail.com>",
   "license": "MIT",
