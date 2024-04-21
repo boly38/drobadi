@@ -47,7 +47,7 @@
     "archiver": "^5.3.1",
     "dotenv": "^16.4.5",
     "dropbox": "^10.34.0",
-    "dropbox-refresh-token": "^0.0.2",
+    "dropbox-refresh-token": "^0.0.3",
     "inquirer": "^9.2.18",
     "yesno": "^0.4.0"
   },
