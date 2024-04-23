@@ -1,3 +1,5 @@
+import process from 'node:process'
+import {before, after, describe, it} from "mocha";
 import fs from "fs";
 import {isSet, logInfo, logWarn, logSuccess, mkdirSync} from '../lib/utils.js';
 import {file, expect} from './testLib.js';
@@ -12,9 +14,28 @@ const {
 } = process.env;
 const testBackupDirectory = "tmp/test-backup";
 const testRestoreDirectory = "tmp/test-restore";
+const testRestoreUnzippedDirectory = "tmp/test-restore-unzipped";
 const testDropboxZipDestinationFilename = "drobadi-archive123.zip";// warn this file is removed by pre-condition
 const testDropboxTargetDirectory = "drobadi-test";
 const expectedRestoredFile = `./${testDropboxZipDestinationFilename}`;
+
+
+/**
+ * produce sample files :
+ * - /hello
+ * - /inside/bonjour
+ * @param targetDirectory
+ */
+const produceSampleFiles = targetDirectory => {
+    // file <targetDirectory>/hello
+    mkdirSync(targetDirectory);
+    fs.writeFileSync(targetDirectory + "/hello", "HELLO WORLD !");
+    // file <targetDirectory>/inside/bonjour
+    const subDirectory = targetDirectory + "/inside";
+    mkdirSync(subDirectory)
+    fs.writeFileSync(subDirectory + "/bonjour", "BONJOUR MONDE !");
+}
+const ZIP_FIRST_LEVEL_NAMES = ['hello', 'inside'];
 
 let initialOptions = {
     "dropboxAppKey": DROBADI_TEST_APP_KEY,
@@ -27,7 +48,6 @@ if (isSet(DROBADI_TEST_DROPBOX_TOKEN)) {
     initialOptions["dropboxToken"] = DROBADI_TEST_DROPBOX_TOKEN; // legacy and deprecated
 }
 const testDOptions = new DOptions(initialOptions);
-
 let drobadi = new Drobadi();
 let lastArchiveSize;
 
@@ -37,7 +57,9 @@ const cleanupConditions = () => {
     VERBOSE && logInfo(`cleanup test directories: ${testBackupDirectory},${testRestoreDirectory}`);
     rmDirSync(testBackupDirectory);
     rmDirSync(testRestoreDirectory);
+    rmDirSync(testRestoreUnzippedDirectory);
     rmDirSync(expectedRestoredFile);
+    rmDirSync("tmp");
 };
 
 const verifyDropboxTestTokenIsSet = () => {
@@ -54,18 +76,11 @@ describe("Drobadi", () => {
     before(cleanupConditions);
     after(cleanupConditions)
 
-    it("should backup a local directory into a dropbox zip file", (done) => {
-        const givenSampleFiles = directory => {
-            mkdirSync(directory);
-            const subDirectory = directory + "/inside";
-            mkdirSync(subDirectory)
-            fs.writeFileSync(directory + "/hello", "HELLO WORLD !");
-            fs.writeFileSync(subDirectory + "/bonjour", "BONJOUR MONDE !");
-        }
+    it("drobadi.backup : should backup a local directory into a dropbox zip file", (done) => {
         mkdirSync("tmp");
-        givenSampleFiles(testBackupDirectory);
+        produceSampleFiles(testBackupDirectory);
 
-        drobadi.backup(testDOptions, testBackupDirectory, testDropboxZipDestinationFilename)
+        drobadi.backup(testDOptions, testBackupDirectory, testDropboxZipDestinationFilename, false)
             .then(backupResult => {
                 const uploadResult = backupResult.uploadResult;
                 VERBOSE && logSuccess(uploadResult.message);
@@ -79,7 +94,7 @@ describe("Drobadi", () => {
 
     });
 
-    it("should list backup", (done) => {
+    it("drobadi.list : should list backup", (done) => {
         drobadi.list(testDOptions)
             .then(listResult => {
                 VERBOSE && logSuccess(listResult);
@@ -88,7 +103,7 @@ describe("Drobadi", () => {
             }).catch(_expectNoError);
     });
 
-    it("should restore backup in current directory", (done) => {
+    it("drobadi.download : should restore backup in current directory", (done) => {
         drobadi.download(testDOptions, testDropboxZipDestinationFilename)
             .then(restoreResult => {
                 const downloadResult = restoreResult.downloadResult;
@@ -100,11 +115,12 @@ describe("Drobadi", () => {
 
                 expect(file(expectedRestoredFile)).to.exist;
                 expect(fs.statSync(expectedRestoredFile).size).to.be.eql(lastArchiveSize);
+                fs.rmSync(testDropboxZipDestinationFilename); // clean up
                 done();
             }).catch(_expectNoError);
     });
 
-    it("should restore backup in specified file", (done) => {
+    it("drobadi.download restored.zip : should restore backup in specified file", (done) => {
         VERBOSE && logInfo(`create empty ${testRestoreDirectory}`)
         mkdirSync(testRestoreDirectory);
         const destination = `${testRestoreDirectory}/restored.zip`;
@@ -120,6 +136,18 @@ describe("Drobadi", () => {
 
                 expect(file(destination)).to.exist;
                 expect(fs.statSync(destination).size).to.be.eql(lastArchiveSize);
+                done();
+            })
+            .catch(_expectNoError);
+    });
+
+    it("drobadi.downloadAndUnzip : should restore backup in specified directory", (done) => {
+        const destination = `${testRestoreUnzippedDirectory}`;
+
+        drobadi.downloadAndUnzip(testDOptions, testDropboxZipDestinationFilename, destination)
+            .then(() => {
+                console.log("unzip as directory done :")
+                expect(fs.readdirSync(destination)).to.be.eql(ZIP_FIRST_LEVEL_NAMES)
                 done();
             })
             .catch(_expectNoError);

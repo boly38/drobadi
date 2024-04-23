@@ -49,6 +49,7 @@
     "dropbox": "^10.34.0",
     "dropbox-refresh-token": "^0.0.3",
     "inquirer": "^9.2.18",
+    "unzipper": "^0.11.4",
     "yesno": "^0.4.0"
   },
   "devDependencies": {
