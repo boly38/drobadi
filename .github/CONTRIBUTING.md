@@ -2,6 +2,7 @@
 
 # Github users HowTos
 
+
 ## HowTo contribute
 
 Please create an [issue](https://github.com/boly38/drobadi/issues) describing your goal / idea / question / bug description...
@@ -13,12 +14,11 @@ If you want to push some code :
 ## HowTo push some code
 
 Follow this steps:
-- fork the repository using Github portal.
+- fork the repository using GitHub portal.
 - Clone your fork locally
 - Prepare a feature branch `checkout -b my_idea`
 - add some code
 - double check green Unit Tests : `DROBADI_TEST_VERBOSE=true npm test`
-
 
 # Maintainers HowTos
 

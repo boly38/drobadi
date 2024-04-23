@@ -5,7 +5,8 @@ Dropbox backup directory
 A NodeJS tool to 
 - zip a directory and create backup onto Dropbox, 
 - list backups, 
-- or download a backup.
+- download a backup
+- or download and unzip a backup.
 
 [![NPM](https://nodei.co/npm/drobadi.png?compact=true)](https://npmjs.org/package/drobadi)
 
@@ -87,6 +88,17 @@ Example: download dropbox file `/backup/biolo.zip` as local file `/tmp/ddd.zip`
 drobadi download biolo.zip /tmp/ddd.zip
 ```
 
+### Download and unzip a backup
+- `drobadi downloadAndUnzip <myBackup.zip> [</local/path>]`
+
+_download a remote backup and unzip it into local directory_
+
+Example: download dropbox file `/backup/biolo.zip` and unzip it into local directory `./biolo`
+```
+drobadi downloadAndUnzip biolo.zip ./biolo
+```
+
+
 ## DOptions
 Drobadi options are
 - `dropboxAppKey` (or `DBD_DROPBOX_APP_KEY` env. Default: `null`. **Required**) : [dropbox application](https://www.dropbox.com/developers/apps/) key.
@@ -145,20 +157,16 @@ let promiseResult = drobadi.download(dOptions, "dataBack.zip")
 var promiseResult = drobadi.download(dOptions, "dataBack.zip", "/home/user/incomming/restored.zip")
 ```
 
+### Restore remote backup and unzip it in a given local directory
+```
+var promiseResult = drobadi.downloadAndUnzip(dOptions, "dataBack.zip", "/tmp/restoreHere")
+```
+
 NB: you could also have a look at tests : [drobadi.test.js](tests/drobadi.test.js)
 
 
 ## How to contribute
-You're not a dev ? just submit an issue (bug, improvements, questions). Or else:
-* Clone
-* Install deps
-* Then mocha tests
-```
-git clone https://github.com/boly38/drobadi.git
-npm install
-npm run test
-```
-* you could also fork, feature branch, then submit a pull request.
+cf [contributing guide](./.github/CONTRIBUTING.md)
 
 ### Services or activated bots
 
