@@ -72,8 +72,11 @@ const verifyDropboxTestTokenIsSet = () => {
 }
 
 describe("Drobadi", () => {
-    verifyDropboxTestTokenIsSet();
-    before(cleanupConditions);
+    before(() => {
+        verifyDropboxTestTokenIsSet();
+        cleanupConditions()
+    });
+
     after(cleanupConditions)
 
     it("drobadi.backup : should backup a local directory into a dropbox zip file", (done) => {

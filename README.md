@@ -170,9 +170,9 @@ cf [contributing guide](./.github/CONTRIBUTING.md)
 
 ### Services or activated bots
 
-| badge  | name                            | description                                               |
-|--------|---------------------------------|:----------------------------------------------------------|
-| ![CI/CD](https://github.com/boly38/drobadi/workflows/drobadi-ci/badge.svg) | Github actions                  | Continuous tests.                                         
-| [![Audit](https://github.com/boly38/drobadi/actions/workflows/audit.yml/badge.svg)](https://github.com/boly38/ndrobadi/actions/workflows/audit.yml) | Github actions                  | Continuous vulnerability audit.                           
-| [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)| [Houndci](https://houndci.com/) | JavaScript  automated review (configured by `.hound.yml`) |
+| badge  | name                            | description                                                              |
+|--------|---------------------------------|:-------------------------------------------------------------------------|
+| ![CI/CD](https://github.com/boly38/drobadi/workflows/drobadi-ci/badge.svg) | Github actions                  | Continuous tests.                                                        
+| [![Audit](https://github.com/boly38/drobadi/actions/workflows/audit.yml/badge.svg)](https://github.com/boly38/ndrobadi/actions/workflows/audit.yml) | Github actions                  | Continuous vulnerability audit.                                          
+| [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)| [Houndci](https://houndci.com/) | JavaScript  automated review (configured by [`.hound.yml`](.hound.yml)) |
 
