@@ -7,6 +7,7 @@
   "type": "module",
   "main": "./lib/drobadi.js",
   "scripts": {
+    "lint": "eslint .",
     "audit": "npm audit --omit=dev",
     "preinstall": "npx force-resolutions",
     "test-requirement": "echo You must do: source ./env/initEnv.test.sh",
@@ -34,7 +35,8 @@
     "years": [
       2021,
       2022,
-      2023
+      2023,
+      2024
     ],
     "author": "Brice Vandeputte"
   },
@@ -53,9 +55,15 @@
     "yesno": "^0.4.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@stylistic/eslint-plugin-js": "^1.7.2",
     "c8": "^8.0.1",
     "chai": "^5.1.0",
     "chai-files": "^1.4.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-eslint-plugin": "^6.0.0",
+    "eslint-plugin-mocha": "^10.4.2",
+    "eslint-plugin-node": "^11.1.0",
     "mocha": "^10.4.0",
     "npm-force-resolutions": "^0.0.10"
   },

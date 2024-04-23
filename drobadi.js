@@ -1,3 +1,5 @@
+import console from 'node:console'
+import process from 'node:process'
 import DCommand from './lib/DCommand.js';
 import {isSet} from "./lib/utils.js";
 // take first command line argument
