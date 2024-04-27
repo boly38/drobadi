@@ -49,7 +49,7 @@
     "archiver": "^5.3.1",
     "dotenv": "^16.4.5",
     "dropbox": "^10.34.0",
-    "dropbox-refresh-token": "^0.0.3",
+    "dropbox-refresh-token": "^0.0.5",
     "inquirer": "^9.2.18",
     "unzipper": "^0.11.4",
     "yesno": "^0.4.0"
