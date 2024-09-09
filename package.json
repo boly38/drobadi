@@ -57,17 +57,22 @@
   "devDependencies": {
     "@eslint/js": "^9.0.0",
     "@stylistic/eslint-plugin-js": "^1.7.2",
-    "c8": "^8.0.1",
-    "chai": "^5.1.0",
+    "c8": "^10.1.2",
+    "chai": "^5.1.1",
     "chai-files": "^1.4.0",
     "eslint": "^9.0.0",
     "eslint-plugin-eslint-plugin": "^6.0.0",
     "eslint-plugin-mocha": "^10.4.2",
     "eslint-plugin-node": "^11.1.0",
-    "mocha": "^10.4.0",
+    "mocha": "^10.7.3",
     "npm-force-resolutions": "^0.0.10"
   },
-  "resolutions": {},
+  "doc_resolutions": {
+    "braces": "mocha nested dep, 3.0.2 vuln."
+  },
+  "resolutions": {
+    "braces": "3.0.3"
+  },
   "jshintConfig": {
     "esversion": 6
   }
