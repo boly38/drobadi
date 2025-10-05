@@ -19,21 +19,22 @@ Follow this steps:
 - Clone your fork locally
 - Prepare a feature branch `checkout -b my_idea`
 - add some code
+- assume environment setup is set (via  dedicated [initEnv](../env/initEnv.template.sh))
 - execute tests and linter
 
 ### tests
-* launch tests using `npm test`.
 
-* you have a verbose mode : `DROBADI_TEST_VERBOSE=true npm test`
-
-Think about environment setup.
+* launch tests using `pnpm test`.
+* launch tests in verbose mode : `export DROBADI_TEST_VERBOSE=true && pnpm test`
 
 ### linter
-*  launch lint using `npm run lint`.
+*  launch lint using `pnpm lint`.
 
 About linter :
-- locally ESLint 9.0 is used as dev dependencies and rely on `eslint.config.js` ([doc](https://eslint.org/docs/latest/use/configure/configuration-files))
-- on GitHub PR, [HoundCi service](https://houndci.com) is triggered and rely on [`.hound.yml`](../.hound.yml) file and derived file. HoundCi is yet not compatible with 9.0 config file ([src](http://help.houndci.com/en/articles/2461415-supported-linters) - [eslint 8.0 config file doc](https://eslint.org/docs/v8.x/use/configure/configuration-files).
+- locally ESLint 9.37.0 is used as dev dependencies and rely on `eslint.config.js` ([doc](https://eslint.org/docs/latest/use/configure/configuration-files))
+- on GitHub PR, [HoundCi service](https://houndci.com) is triggered and rely on [`.hound.yml`](../.hound.yml) file and derived file.
+
+(TO BE REFRESHED) HoundCi is yet not compatible with 9.0 config file ([src](http://help.houndci.com/en/articles/2461415-supported-linters) - [eslint 8.0 config file doc](https://eslint.org/docs/v8.x/use/configure/configuration-files).
 
 
 # Maintainers HowTos
