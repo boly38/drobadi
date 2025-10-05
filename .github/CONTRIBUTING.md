@@ -51,6 +51,7 @@ Install and create automatically a draft release version using [gh client](https
 
 Example to create v1.1.4
 ```bash
+git checkout main && git pull
 gh release create v1.1.4 --draft --generate-notes
 ```
 this will make a new draft release. Verify it in [releases list](https://github.com/boly38/botEnSky/releases)
