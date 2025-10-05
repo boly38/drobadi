@@ -38,16 +38,21 @@ About linter :
 
 # Maintainers HowTos
 
-## HowTo release using Gren
+## HowTo create a fresh version
+- use patch or minor or major workflow
 
+this will make a new version and on version tag, the main ci workflow will push a new npmjs version too.
+
+## HowTo release using `gh`
+
+Install and create automatically a draft release version using [gh client](https://cli.github.com/)
+- the version tag must exist
+
+Example to create v1.1.4
 ```bash
-# provide PAT with permissions to create release on current repository
-export GREN_GITHUB_TOKEN=your_token_here
-# one time setup
-npm install github-release-notes -g
-
-# make a release v1.0.1 with all history
-gren release --data-source=prs -t "v1.0.1" --milestone-match="v1.0.1"
-# overrides release v1.0.1 with history from v1.0.0
-gren release --data-source=prs -t "v1.0.1..v1.0.0" --milestone-match="v1.0.1" --override
+gh release create v1.1.4 --draft --generate-notes
 ```
+this will make a new draft release. Verify it in [releases list](https://github.com/boly38/botEnSky/releases)
+
+- ⚠️ the repository apply immutable releases since #65 (v1.1.4) and above, so you can't modify a release once published
+- publish the release when ready
