@@ -14,30 +14,41 @@ jobs:
     strategy:
       matrix:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-        node-version: [20.x]
+        node-version: [18.x]
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v5
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: |
+            package-lock.json
 
-      - name: Install dependencies
-        # - run: npm ci # need package.json.lock
+      - name: SETUP - Install dependencies
         run: |
+          echo ::group::Install dependencies
+          # need package-lock.json
           echo "install"
-          npm install
-          echo "show outdated (if any)"
-          npm outdated --depth=3 || echo "you must think about update your dependencies :)"
+          npm install 
+          echo ::endgroup::
 
-      - name: Npm audit
-        uses: oke-py/npm-audit-action@v2.4.4
+      - name: CHECK - Check for outdated dependencies (non-blocking warning)
+        run: |
+          echo "🔍 Checking for outdated dependencies..."
+          if npm outdated --depth=3; then
+            echo "::notice title=Deps OK::✅ Dependencies are up to date 🎉"
+          else
+            echo "::warning title=ℹ️ 🕸 Outdated Dependencies::Some dependencies are outdated. Please consider updating them."
+          fi
+
+      - name: CHECK - npm audit action
+        uses: oke-py/npm-audit-action@v3
         with:
-          audit_level: high
+          audit_level: moderate
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          issue_assignees: boly38
+          issue_labels: vulnerability,bot
           dedupe_issues: true
-          production_flag: true
