@@ -1,5 +1,5 @@
 # drobadi continuous integration
-name: drobadi-ci
+name: main
 
 # Controls when the action will run. 
 on:
@@ -29,22 +29,33 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          # version from package.json
+          run_install: false
+
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v5
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-          cache-dependency-path: |
-            package-lock.json
+          cache: 'pnpm'
 
       - name: Install dependencies
-        # npx force-resolutions : in case of Permission denied: run it locally to fix package-lock.json
         run: |
+          echo ::group::Install dependencies
           echo "install"
-          npm run preinstall
-          npm install
-          echo "show outdated (if any)"
-          npm outdated --depth=3 || echo "you must think about update your dependencies :)"
+          pnpm i --frozen-lockfile
+          echo ::endgroup::
+
+      - name: CHECK - Check for outdated dependencies (non-blocking warning)
+        run: |
+          echo "🔍 Checking for outdated dependencies..."
+          if pnpm outdated --depth=3; then
+            echo "::notice title=Deps OK::✅ Dependencies are up to date 🎉"
+          else
+            echo "::warning title=ℹ️ 🕸 Outdated Dependencies::Some dependencies are outdated. Please consider updating them."
+          fi
 
       - name: Run tests
         env:
@@ -53,22 +64,34 @@ jobs:
           DROBADI_TEST_APP_KEY: ${{ secrets.DROBADI_TEST_APP_KEY  }}
           DROBADI_TEST_APP_SECRET: ${{ secrets.DROBADI_TEST_APP_SECRET  }}
           DROBADI_TEST_REFRESH_TOKEN: ${{ secrets.DROBADI_TEST_REFRESH_TOKEN  }}
-        run: npm run ci-test
+        run: |
+           echo ::group::CI Test
+           pnpm ci-test
+           echo ::endgroup::
 
       - name: Report coverage
         continue-on-error: true
-        uses: romeovs/lcov-reporter-action@v0.2.16
+        uses: romeovs/lcov-reporter-action@v0.4.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           lcov-file: ./coverage/lcov.info
 
-      - name: Npm audit
-        uses: oke-py/npm-audit-action@v2
+      - name: CHECK - Run inline pnpm audit (non-blocking warning)
+        run: |
+          echo "🔍 Checking for vulnerabilities..."
+          if pnpm audit; then
+            echo "::notice title=Audit OK::✅ Audit is fine 🎉"
+          else
+            echo "::warning title=ℹ️ vulnerabilities found"
+          fi
+
+      - name: CHECK - pnpm audit and comment on PR
+        if: ${{ github.event.pull_request }}
+        uses: JamesRobertWiseman/pnpm-audit@v2
         with:
-          audit_level: high
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          dedupe_issues: true
-          production_flag: true
+          level: moderate   # 'low'|'moderate'|'high'|'critical'
+          fails: true
 
       - name: Publish NpmJS package
         if: github.ref == 'refs/heads/npmjs'
@@ -76,3 +99,4 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_DEPLOY_TOKEN }}" > .npmrc
           npm whoami # rely on .npmrc
           npm publish
+          echo "::notice title=Publish OK::✅ Npmjs updated successfully 🎉"

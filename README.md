@@ -2,7 +2,7 @@
 
 Dropbox backup directory
 
-A NodeJS tool to 
+A Node.js tool to 
 - zip a directory and create backup onto Dropbox, 
 - list backups, 
 - download a backup
@@ -17,7 +17,7 @@ A NodeJS tool to
 **install drobadi**
 
 ```
-npm install drobadi@latest --global
+pnpm install drobadi@latest --global
 ```
 
 **set your preferences**
@@ -122,7 +122,7 @@ DOptions precedence: options object, or env value or config file or default valu
 
 You have to import as dependency
 ```
-npm install drobadi
+pnpm install drobadi
 ```
 
 ### Define the requirements, example:
